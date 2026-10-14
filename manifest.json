@@ -1,0 +1,66 @@
+{
+  "manifest_version": 3,
+  "name": "Pixel Marvelous",
+  "version": "0.3.0",
+  "description": "Overlay design mockups on any page. Layers, snapping, and overlays that stick to elements.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "minimum_chrome_version": "116",
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "scripting",
+    "activeTab",
+    "sidePanel"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "side_panel": {
+    "default_path": "src/library/library.html"
+  },
+  "action": {
+    "default_title": "Pixel Marvelous",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+P"
+      },
+      "description": "Show or hide Pixel Marvelous on this page"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "src/content/util.js",
+        "src/content/styles.js",
+        "src/content/store.js",
+        "src/content/selector.js",
+        "src/content/model.js",
+        "src/content/snap.js",
+        "src/content/picker.js",
+        "src/content/stage.js",
+        "src/content/panel.js",
+        "src/content/transfer.js",
+        "src/content/main.js"
+      ]
+    }
+  ]
+}
